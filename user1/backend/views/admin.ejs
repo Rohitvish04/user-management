@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Actions</th>
+    </tr>
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user._id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+        <td>
+          <form method="POST" style="display:inline;">
+            <input type="hidden" name="userId" value="<%= user._id %>">
+            <button type="submit" name="action" value="delete">Delete</button>
+            <button type="submit" name="action" value="toggleAdmin">Toggle Admin</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+  <a href="/profile">Back to Profile</a>
+</body>
+</html>

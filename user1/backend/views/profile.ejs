@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Welcome, <%= user.username %></h1>
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+  <img src="/uploads/<%= user.profilePicture %>" alt="Profile Picture" width="100">
+  <p>Email: <%= user.email %></p>
+  <p>Admin: <%= user.isAdmin ? 'Yes' : 'No' %></p>
+  <a href="/logout">Logout</a>
+  <% if (user.isAdmin) { %>
+    <a href="/admin">Admin Panel</a>
+  <% } %>
+</body>
+</html>
